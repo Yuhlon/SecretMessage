@@ -6,12 +6,10 @@ h1 {
 
 #msgLabel{
     font-size: 50px;
+    display: flex;
+    align-items: center;
 }
 
-#secretForm {
-    display: flex;
-    flex-direction: column;
-}
 
 #message{
     margin-top: 10px;
@@ -31,4 +29,26 @@ p,
 span, 
 #pTitle{
     font-size: 30px;
+}
+
+
+body[data-page="home"] #shareLink,
+body[data-page="home"] #decodedMessageContainer {
+    display: none;
+}
+
+
+body[data-page="share"] h1,
+body[data-page="share"] #msgLabel,
+body[data-page="share"] #message,
+body[data-page="share"] #btnSubmit,
+body[data-page="share"] #decodedMessageContainer,
+body[data-page="share"] #btnHomePage {
+    display: none;
+}
+
+
+body[data-page="decoded"] #main,
+body[data-page="decoded"] #shareLink {
+    display: none;
 }

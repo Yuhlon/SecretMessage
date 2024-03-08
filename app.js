@@ -1,19 +1,14 @@
-let domain = window.location.hostname;
-
 const submitForm = (event) => {
     event.preventDefault();
 
     const userInput = document.getElementById("message").value;
-    console.log("La saisie de l'utilisateur est : " + userInput);
 
     const encodedMessage = cryptedMessage(userInput);
-    console.log("La saisie encodée en base64 est : " + encodedMessage);
 
     const urlObject = new URL(window.location.href);
     urlObject.hash = encodedMessage;
 
     const url = urlObject.href;
-    console.log("URL à partager : " + url);
 
     const urlContainer = document.getElementById("urlContainer");
     urlContainer.innerHTML = '<span>' + url + '</span>';
@@ -22,7 +17,7 @@ const submitForm = (event) => {
     copyIcon.innerHTML = "&#128203;";
     copyIcon.addEventListener("click", function () {
         copyUrl(url);
-
+        updatePageElements();
     });
 
     urlContainer.appendChild(copyIcon);
@@ -63,12 +58,34 @@ const displayMessage = () => {
 
 }
 
-displayMessage();
+const updatePageElements = () => {
+    const url = window.location.href;
+    const decodedMessageContainer = document.getElementById("decodedMessageContainer");
+    const shareLink = document.getElementById("shareLink");
+    const btnHomePage = document.getElementById("btnHomePage");
+    const secretForm = document.getElementById("secretForm");
+
+    btnHomePage.style.display = "none";
 
 
-function goToHomePage() {
+    if (url.includes("#")) {
+        decodedMessageContainer.style.display = "block";
+        shareLink.style.display = "none";
+        btnHomePage.style.display = "block";
+        secretForm.style.display = "none";
+    } else {
+        decodedMessageContainer.style.display = "none";
+        shareLink.style.display = "block";
+        secretForm.style.display ="block";
+    }
+}
+
+const goToHomePage = () =>  {
     const urlObject = new URL(window.location.href);
     const baseUrl = urlObject.origin;
-
+    
     window.location.href = baseUrl; 
 }
+
+displayMessage();
+updatePageElements();
