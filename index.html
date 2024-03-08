@@ -4,24 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SecretMessage</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div id="main">
-        <h1>Enter a secret message</h1>
+        <h1>A secret message</h1>
         <form id="secretForm" onsubmit="submitForm(event)">
-            <label for="message">My secret message...</label>
+            <label for="message" id="msgLabel">My secret message :</label>
             <textarea id="message"></textarea>
-            <button type="submit">Create</button>
+            <button type="submit" id="btnSubmit">Create</button>
         </form>
     </div>
     <div id="shareLink">
-        <p>
+        <p id="pTitle">
             Copiez le lien ci-dessous pour partager votre message
         </p>
         <div id="urlContainer"></div>
     </div>
+
+    <div id="decodedMessageContainer">
+        <p id="decodedMessage"></p>
+        <button onclick="goToHomePage()" id="btnHomePage">Retour à la page principale</button>
+      </div>
 
     <script src="app.js"></script>
 </body>
